@@ -48,4 +48,9 @@ public class CarrinhoTest {
         original = carrinho.menorProduto();
         assertArrayEquals(new Object[]{original}, new Object[]{copia});
     }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void inserirObjetoNull(){
+        carrinho.add(null);
+    }    
 }
