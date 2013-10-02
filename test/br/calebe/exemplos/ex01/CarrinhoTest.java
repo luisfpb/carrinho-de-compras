@@ -1,5 +1,6 @@
 package br.calebe.exemplos.ex01;
 
+import junit.framework.Assert;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,9 +55,9 @@ public class CarrinhoTest {
         carrinho.add(null);
     }    
     
-    @Test
-    public void adicionarOutroTipoProduto(){
-        Livro livro = new Livro("Java","Daniel","Abril",40);
+    @Test 
+    public void adicionarOutroTipoProduto() throws CarrinhoVazioExpected{
+        Livro livro = new Livro("Abril",40, "Java","Daniel");
         carrinho.add(livro);
         Produto menor = carrinho.menorProduto();
         Assert.assertEquals(menor,livro);
@@ -67,9 +68,25 @@ public class CarrinhoTest {
         carrinho.add(new Produto("Teste",10));
         carrinho.add(new Produto("Java",15));
         carrinho.add(new Produto("ProgMat",30));
-        int antes = carrinho.getTotal();
+        double antes = carrinho.getTotal();
         carrinho.remove("Java");
-        int depois = carrinho.getTotal();
+        double depois = carrinho.getTotal();
         Assert.assertEquals(antes,depois);
     }
+    
+    @Test
+    public void calculaTotal(){
+        Produto prod1 = new Produto("Teste",10);
+        Produto prod2 = new Produto("Java",20);
+        Produto prod3 = new Produto("TeoComp",30);
+        carrinho.add(prod1);
+        carrinho.add(prod2);
+        carrinho.add(prod3);
+        double soma;
+        soma = prod1.getPreco()+prod2.getPreco()+prod3.getPreco();
+        double somafunc;
+        somafunc = carrinho.getSoma();
+        Assert.assertEquals(soma, somafunc, 0d);
+    }
+    
 }

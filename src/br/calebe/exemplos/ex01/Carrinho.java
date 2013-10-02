@@ -27,4 +27,28 @@ public class Carrinho {
         }
         return menor;
     }
+    
+    public double getSoma(){
+        double soma = 0;
+        Produto prod = produtos.get(0);
+        for(Produto produto : produtos){
+            soma = soma + prod.getPreco();
+        }
+        return soma;
+    }
+    
+    public void remove(String nome){
+     
+        for(int i = 0 ; i< produtos.size(); i++){
+            if(nome.equals(produtos.get(i).getNome()))
+            {
+                produtos.remove(i);
+            }
+            
+        }
+    }
+    
+    public double getTotal(){
+        return produtos.size();
+    }
 }
